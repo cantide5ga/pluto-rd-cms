@@ -1,0 +1,51 @@
+{
+  "author": "cantide5ga",
+  "name": "pluto-rd-cms",
+  "description": "<description>",
+  "version": "0.1.0",
+  "scripts": {
+    "clean": "rm -rf build && rm -rf dist",
+    "install:latest": "npm install --save-dev typings@* typescript@* istanbul@* jasmine@*",
+    "init": "rm -rf .git && npm run install:latest && npm init && git init",
+    "compile": "tsc",
+    "build:tsc": "npm run compile",
+    "prebuild": "npm run clean && mkdir -p dist",
+    "build": "npm run build:tsc && npm run bundle",
+    "prebundle": "mkdir build/lib",
+    "bundle": "browserify build/js/Cms.js > build/lib/bundle.js",
+    "prepack": "",
+    "test": "rm -rf build && npm run build:tsc && istanbul cover jasmine",
+    "posttest": "istanbul check-coverage --statements 80 --functions 80 --branches 80 --lines 80",
+    "publish:major": "npm version major && npm run prepack && npm publish build",
+    "publish:minor": "npm version minor && npm run prepack && npm publish build",
+    "publish:patch": "npm version patch && npm run prepack && npm publish build",
+    "typings": "typings"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "browserify": "^13.1.0",
+    "config": "^1.21.0",
+    "flux": "^2.1.1",
+    "fuzzy-filter": "0.0.3",
+    "popsicle": "^8.1.1",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "simplemde": "^1.11.2"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "jasmine": "^2.4.1",
+    "typescript": "^1.8.10",
+    "typings": "^1.3.3"
+  },
+  "main": "index.js",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cantide5ga/pluto-rd-cms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cantide5ga/pluto-rd-cms/issues"
+  },
+  "homepage": "https://github.com/cantide5ga/pluto-rd-cms#readme"
+}

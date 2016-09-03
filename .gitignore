@@ -1,0 +1,9 @@
+node_modules
+typings
+build
+dist
+.vscode
+npm-debug.log
+tsd-debug.log
+.gradle
+coverage

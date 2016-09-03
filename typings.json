@@ -1,0 +1,13 @@
+{
+  "name": "pluto-rd-cms",
+  "main": "",
+  "globalDependencies": {
+    "config": "registry:dt/config#0.0.0+20160317120654",
+    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "node": "registry:dt/node#6.0.0+20160720070758",
+    "simplemde": "registry:dt/simplemde#0.0.0+20160720062200"
+  },
+  "dependencies": {
+    "popsicle": "npm:popsicle"
+  }
+}

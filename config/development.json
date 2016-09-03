@@ -1,0 +1,5 @@
+{
+    "pluto-rd": {
+        "endpoint": "localhost:3000/api"
+    }
+}
