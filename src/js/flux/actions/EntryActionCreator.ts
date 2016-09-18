@@ -1,4 +1,4 @@
-import { AbstractActionCreator } from './AbstractActionCreator';
+import { AbstractActionCreator } from 'flux-ts-boilerplate';
 import { ActionTypes } from './ActionTypes';
 import { Entry } from 'pluto-rd';
 import { submitEntry } from '../../rest/Facade';
@@ -38,6 +38,40 @@ class ActionCreator extends AbstractActionCreator<ActionTypes> {
         this.dispatch({
             actionType: ActionTypes.TAG_REMOVAL,
             payload: handle    
+        });
+    }
+
+    public denySubmit() {
+        this.dispatch({
+            actionType: ActionTypes.INVALID_SUBMIT
+        });
+    }
+
+    public inputTitle(title: string) {
+        this.dispatch({
+            actionType: ActionTypes.AS_TYPING_TITLE,
+            payload: title
+        });
+    }
+
+    public blurTitle(title: string) {
+        this.dispatch({
+            actionType: ActionTypes.TITLE_BLUR,
+            payload: title
+        });
+    }
+
+    public inputDate(date: string) {
+        this.dispatch({
+            actionType: ActionTypes.AS_TYPING_DATE,
+            payload: date
+        });
+    }
+
+    public blurDate(date: string) {
+        this.dispatch({
+            actionType: ActionTypes.DATE_BLUR,
+            payload: date
         });
     }
 }

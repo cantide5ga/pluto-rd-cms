@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { EntryActionCreator } from '../../../flux/actions/EntryActionCreator';
-import { EntryFormStore } from '../../../flux/stores/EntryFormStore';
+import { EntryActionCreator } from '../../../../../flux/actions/EntryActionCreator';
 
-export class TagSuggestions extends React.Component<{ suggestions: string[] }, {}> {
+export class Suggestions extends React.Component<{ items: string[] }, {}> {
     public render() {
-        const suggestionEls = this.props.suggestions.map(suggestion => {
+        const suggestionEls = this.props.items.map(suggestion => {
             return <span className="suggestion" onClick={this.chooseTag(suggestion)}>
                     <a href="#">{suggestion}</a>
                 </span>    

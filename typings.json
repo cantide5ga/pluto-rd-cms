@@ -8,6 +8,7 @@
     "simplemde": "registry:dt/simplemde#0.0.0+20160720062200"
   },
   "dependencies": {
+    "flux-ts-boilerplate": "npm:flux-ts-boilerplate",
     "popsicle": "npm:popsicle"
   }
 }

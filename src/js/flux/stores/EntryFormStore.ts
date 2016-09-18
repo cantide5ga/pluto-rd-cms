@@ -1,45 +1,71 @@
-import { AbstractStore } from './AbstractStore';
-import { Action } from '../actions/Action';
+import { AbstractStore } from 'flux-ts-boilerplate';
+import { Action } from 'flux-ts-boilerplate';
 import { ActionTypes } from '../actions/ActionTypes';
-import { Dispatcher } from '../dispatcher/Dispatcher';
-import { TagState } from '../../common/TagState';
-import { suggestTags } from '../../rest/Facade';
+import { Dispatcher } from 'flux-ts-boilerplate';
+import { ValidatableInput } from '../../common/validation/ValidatableInput';
+import { MessageType } from '../../common/validation/MessageType';
+import { FormState } from '../../common/FormState';
 
-let contentHtml = '';
-let keywords: Array<string>;
-let input: string;
-let suggestions: Array<string>;
+let alert = false;
+let title: ValidatableInput = new ValidatableInput();
+let date: ValidatableInput = new ValidatableInput();
+let content: ValidatableInput = new ValidatableInput();
 
-const updateContent = (html: string) => {
-    contentHtml = html;
+const validateTitleInput = (): void => {
+    title.validationMsg = null; 
 }
 
-const fuzzySuggest = async (chars: string) => {
-    suggestions = await suggestTags(chars);
+const validateTitleBlur = (): void => {    
+    if(!title.value) { 
+        title.validationMsg = {
+            message: `Title can't be null`, 
+            type: MessageType.ERROR
+        }
+    } else {
+        title.validationMsg = null;
+    }
 }
 
-const associateKeyword = (keyword: string) => {
-    input = '';
-    keywords.push(keyword);
+const validateDateInput = (): void => {
+    date.validationMsg = null;
 }
 
-const removeKeyword = (keyword: string) => {
-    const occurance = keywords.indexOf(keyword);
-    if(occurance > -1)
-        keywords.splice(occurance, 1);
+const validateDateBlur = (): void => {
+    if(!date.value) { 
+       date.value = new Date().toString();
+    }
+}
+
+const validateContentBlur = (): void => {
+     if(!content.value) {
+        content.validationMsg = {
+            message: `Content can't be null`, 
+            type: MessageType.ERROR
+        }
+    } else {
+        content.validationMsg = null;
+    }
+}
+
+const resetAlert = (): void => {
+    alert = false;
 }
 
 class EntryFormStoreStatic extends AbstractStore {
-    public getContent(): string {
-        return contentHtml;
+    public getFormState(): FormState {
+        return {
+            alert: alert,
+            title: title,
+            date: date,
+            content: content,
+            keywords: null //pull from KeywordStore
+        }
     }
 
-    public getTagState(): TagState {
-        return {
-            input: input,
-            suggestions: suggestions,
-            chosen: keywords 
-        }
+    public isValid(): boolean {
+        return !title.validationMsg
+            && !date.validationMsg
+            && !content.validationMsg;
     } 
 }
 
@@ -47,25 +73,38 @@ export const EntryFormStore = new EntryFormStoreStatic();
 
 const cb = (action: Action<ActionTypes>): void => {    
     switch(action.actionType) {
-        case ActionTypes.CONTENT_EDITOR_BLUR:
-        updateContent(action.payload);
+        case ActionTypes.AS_TYPING_TITLE:
+        title.value = action.payload;
+        resetAlert();
+        validateTitleInput();
         EntryFormStore.emitChange();
         break;
         
-        case ActionTypes.AS_TYPING_TAGS:
-        fuzzySuggest(action.payload);
+        case ActionTypes.TITLE_BLUR:
+        title.value = action.payload;
+        resetAlert();
+        validateTitleBlur();
+        EntryFormStore.emitChange();
+        break;
+
+        case ActionTypes.AS_TYPING_DATE:
+        date.value = action.payload;
+        resetAlert();
+        validateDateInput();
         EntryFormStore.emitChange();
         break;
         
-        case ActionTypes.TAG_CHOSEN:
-        associateKeyword(action.payload);
+        case ActionTypes.DATE_BLUR:
+        date.value = action.payload;
+        resetAlert();
+        validateDateBlur();
         EntryFormStore.emitChange();
         break;
-        
-        case ActionTypes.TAG_REMOVAL:
-        removeKeyword(action.payload);
+
+        case ActionTypes.INVALID_SUBMIT:
+        alert = true;
         EntryFormStore.emitChange();
-        break;   
+        break;
     }
 };
 

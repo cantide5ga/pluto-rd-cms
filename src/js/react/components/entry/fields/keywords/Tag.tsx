@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { EntryActionCreator } from '../../../flux/actions/EntryActionCreator';
-import { EntryFormStore } from '../../../flux/stores/EntryFormStore';
+import { EntryActionCreator } from '../../../../../flux/actions/EntryActionCreator';
+import { EntryFormStore } from '../../../../../flux/stores/EntryFormStore';
 
-export class ChosenTag extends React.Component<{ handle: string }, {}> {
+export class Tag extends React.Component<{ handle: string }, {}> {
     public render() {
         const handle = this.props.handle;
         

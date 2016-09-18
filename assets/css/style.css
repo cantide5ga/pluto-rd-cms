@@ -1,0 +1,16 @@
+#container {
+    margin: 12px;
+}
+
+.jumbotron {
+    padding: 20px;
+}
+
+.input-group-lg {
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+
+.navbar-fixed-top {
+    opacity: .7;
+}

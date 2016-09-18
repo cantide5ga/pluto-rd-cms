@@ -12,7 +12,7 @@
     "prebuild": "npm run clean && mkdir -p dist",
     "build": "npm run build:tsc && npm run bundle",
     "prebundle": "mkdir build/lib",
-    "bundle": "browserify build/js/Cms.js > build/lib/bundle.js",
+    "bundle": "browserify --im build/js/Cms.js > build/lib/bundle.js",
     "prepack": "",
     "test": "rm -rf build && npm run build:tsc && istanbul cover jasmine",
     "posttest": "istanbul check-coverage --statements 80 --functions 80 --branches 80 --lines 80",
@@ -21,11 +21,15 @@
     "publish:patch": "npm version patch && npm run prepack && npm publish build",
     "typings": "typings"
   },
+  "browserify": {
+    "transform": "config-browserify"
+  },
   "dependencies": {
     "bluebird": "^3.4.6",
     "browserify": "^13.1.0",
     "config": "^1.21.0",
     "flux": "^2.1.1",
+    "flux-ts-boilerplate": "^0.6.0",
     "fuzzy-filter": "0.0.3",
     "popsicle": "^8.1.1",
     "react": "^15.3.1",

@@ -3,7 +3,7 @@ import { Entry } from 'pluto-rd';
 import * as config from 'config';
 const fuzzy = require('fuzzy-filter');
 
-const endpoint = `${config.get<string>('pluto-rd.endpoint')}`
+const endpoint = `${config.get<string>('Client.pluto-rd.endpoint')}`
 const postEntryRsrc = `${endpoint}/v1/entry`;
 const getKeywordsRsrc = `${endpoint}/v1/keyword`;
 
