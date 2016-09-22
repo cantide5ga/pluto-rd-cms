@@ -5,7 +5,7 @@ import { MessageType } from '../../../common/validation/MessageType';
 export class Message extends React.Component<MessageProps, {}> {    
     public render() {
         return (
-            <span className={css(this.props.type)}>
+            <span className={`${css(this.props.type)} input-msg`}>
                 {this.props.value}
             </span>
         )

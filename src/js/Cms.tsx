@@ -10,7 +10,12 @@ const simplemde = new SimpleMDE({
     status: false
 });
 
-simplemde.codemirror.on('blur', () => {
+simplemde.codemirror.on('blur', () => { 
     const value = simplemde['options'].previewRender(simplemde.value());
-    EntryActionCreator.storeContent(value);        
+    EntryActionCreator.blurContent(value);        
 });
+
+simplemde.codemirror.on('change', () => {
+    EntryActionCreator.inputContent();        
+});
+

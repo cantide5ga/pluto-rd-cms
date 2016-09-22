@@ -7,9 +7,13 @@ export class Tag extends React.Component<{ handle: string }, {}> {
         const handle = this.props.handle;
         
         return (
-               <span class="tag">
-                    <span>{handle}</span>;
-                    <a href="#" onClick={this.onClickX(handle)}><span>x</span></a>
+               <span className="label label-default">
+                    {handle}
+                    <a href="#" onClick={this.onClickX(handle)}>
+                        <span className="badge">
+                            <span className="glyphicon glyphicon-remove-circle"></span>
+                        </span>
+                    </a>
                </span>
         )
     }

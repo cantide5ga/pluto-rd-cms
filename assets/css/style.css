@@ -4,13 +4,99 @@
 
 .jumbotron {
     padding: 20px;
+    background-image: url('/assets/images/stardust.png');
 }
 
-.input-group-lg {
-    padding-bottom: 10px;
-    padding-right: 10px;
+div.jumbotron h1 {
+  color: rgb(235, 235, 235); 
 }
 
-.navbar-fixed-top {
-    opacity: .7;
+.input-msg {
+    margin-left: 10px;
 }
+
+/*.navbar-fixed-top {
+    right: 8px;
+    top: 8px
+}*/
+
+.form-alert-enter {
+  opacity: 0.01;
+  /*background-color: red;*/
+}
+
+.form-alert-enter.form-alert-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+  /*background-color: blue;*/
+}
+
+.form-alert-leave {
+  opacity: 1;
+  /*background-color: red;*/
+}
+
+.form-alert-leave.form-alert-leave-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+  /*background-color: blue;*/
+}
+
+.container-fluid{
+  height:100%;
+  display:table;
+  width: 100%;
+  padding: 0;
+}
+
+.row-fluid {height: 100%; display:table-cell; vertical-align: middle;}
+
+.centering {
+  float:none;
+  margin:0 auto;
+}
+
+#msg h3 {
+  color: rgb(235, 235, 235);
+}
+
+.spinner {
+        height: 60px;
+        width: 60px;
+        margin: 0;
+        margin-top: 20px;
+        margin-left: 20px;
+        display: inline-block;
+        vertical-align: top;
+
+        -webkit-animation: rotation .8s linear infinite;
+        -moz-animation: rotation .8s linear infinite;
+        -o-animation: rotation .8s linear infinite;
+        animation: rotation 0.8s linear infinite;
+
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-top: 7px solid rgb(235, 235, 235);
+        /*border: 6px dotted white;*/
+
+        border-radius: 100%;
+        /*background-color: rgb(189, 215, 46);*/
+      }
+
+ @-webkit-keyframes rotation {
+        from {-webkit-transform: rotate(0deg);}
+        to {-webkit-transform: rotate(360deg);}
+      }
+      @-moz-keyframes rotation {
+        from {-moz-transform: rotate(0deg);}
+        to {-moz-transform: rotate(360deg);}
+      }
+      @-o-keyframes rotation {
+        from {-o-transform: rotate(0deg);}
+        to {-o-transform: rotate(360deg);}
+      }
+      @keyframes rotation {
+        from {transform: rotate(0deg);}
+        to {transform: rotate(360deg);}
+      }

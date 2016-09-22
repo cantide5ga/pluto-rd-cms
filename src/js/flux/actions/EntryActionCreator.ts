@@ -13,7 +13,13 @@ class ActionCreator extends AbstractActionCreator<ActionTypes> {
         });
     }
     
-    public storeContent(html: string) {
+    public inputContent() {
+        this.dispatch({
+            actionType: ActionTypes.CONTENT_FILL,    
+        });
+    }
+
+    public blurContent(html: string) {
         this.dispatch({
             actionType: ActionTypes.CONTENT_EDITOR_BLUR,
             payload: html    
@@ -73,6 +79,25 @@ class ActionCreator extends AbstractActionCreator<ActionTypes> {
             actionType: ActionTypes.DATE_BLUR,
             payload: date
         });
+    }
+
+    public inputKeyword(handle: string) {
+        this.dispatch({
+            actionType: ActionTypes.AS_TYPING_KEYWORD,
+            payload: handle
+        });
+    }
+
+    public blurKeyword() {
+        this.dispatch({
+            actionType: ActionTypes.KEYWORD_BLUR
+        })
+    }
+
+    public closeFormAlert() {
+        this.dispatch({
+            actionType: ActionTypes.FORM_ALERT_CLOSE
+        })
     }
 }
 
